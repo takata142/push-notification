@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		846FA7882758452A0011C1AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA7872758452A0011C1AE /* AppDelegate.swift */; };
-		846FA78A2758452A0011C1AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA7892758452A0011C1AE /* SceneDelegate.swift */; };
 		846FA78C2758452A0011C1AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA78B2758452A0011C1AE /* ViewController.swift */; };
 		846FA78F2758452A0011C1AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846FA78D2758452A0011C1AE /* Main.storyboard */; };
 		846FA7912758452B0011C1AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846FA7902758452B0011C1AE /* Assets.xcassets */; };
@@ -16,6 +15,7 @@
 		846FA79F2758452B0011C1AE /* pushNotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA79E2758452B0011C1AE /* pushNotificationTests.swift */; };
 		846FA7A92758452B0011C1AE /* pushNotificationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA7A82758452B0011C1AE /* pushNotificationUITests.swift */; };
 		846FA7AB2758452B0011C1AE /* pushNotificationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA7AA2758452B0011C1AE /* pushNotificationUITestsLaunchTests.swift */; };
+		846FA7BB275994D10011C1AE /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA7BA275994D10011C1AE /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,6 @@
 /* Begin PBXFileReference section */
 		846FA7842758452A0011C1AE /* pushNotification.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pushNotification.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846FA7872758452A0011C1AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		846FA7892758452A0011C1AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		846FA78B2758452A0011C1AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		846FA78E2758452A0011C1AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		846FA7902758452B0011C1AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +48,8 @@
 		846FA7A42758452B0011C1AE /* pushNotificationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pushNotificationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		846FA7A82758452B0011C1AE /* pushNotificationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pushNotificationUITests.swift; sourceTree = "<group>"; };
 		846FA7AA2758452B0011C1AE /* pushNotificationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pushNotificationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		846FA7B7275846AE0011C1AE /* pushNotification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pushNotification.entitlements; sourceTree = "<group>"; };
+		846FA7BA275994D10011C1AE /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +100,10 @@
 		846FA7862758452A0011C1AE /* pushNotification */ = {
 			isa = PBXGroup;
 			children = (
+				846FA7B7275846AE0011C1AE /* pushNotification.entitlements */,
 				846FA7872758452A0011C1AE /* AppDelegate.swift */,
-				846FA7892758452A0011C1AE /* SceneDelegate.swift */,
 				846FA78B2758452A0011C1AE /* ViewController.swift */,
+				846FA7BA275994D10011C1AE /* ModalViewController.swift */,
 				846FA78D2758452A0011C1AE /* Main.storyboard */,
 				846FA7902758452B0011C1AE /* Assets.xcassets */,
 				846FA7922758452B0011C1AE /* LaunchScreen.storyboard */,
@@ -258,9 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846FA7BB275994D10011C1AE /* ModalViewController.swift in Sources */,
 				846FA78C2758452A0011C1AE /* ViewController.swift in Sources */,
 				846FA7882758452A0011C1AE /* AppDelegate.swift in Sources */,
-				846FA78A2758452A0011C1AE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +439,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = pushNotification/pushNotification.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 46AW9MRXBT;
@@ -447,13 +451,15 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.takata.pushNotification;
+				PRODUCT_BUNDLE_IDENTIFIER = com.takataikuo.pushNotification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -465,6 +471,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = pushNotification/pushNotification.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 46AW9MRXBT;
@@ -475,13 +483,15 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.takata.pushNotification;
+				PRODUCT_BUNDLE_IDENTIFIER = com.takataikuo.pushNotification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
