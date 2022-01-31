@@ -9,23 +9,26 @@ import UIKit
 import UserNotifications
 import Foundation
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    //ペイロード取得変数定義(データの受け渡し用)
-    //アプリ未起動時
-    var jsonAps2 = Dictionary<String,Any>()
-    //フォアグラウンド、バックグラウンド時
-    var jsonAps = Dictionary<String,Any>()
+    
+    var CurrentVC = UIApplication.shared.keyWindow?.rootViewController
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    //通知押下時に渡ってくるペイロードを格納
+    var jsonAps = Dictionary<String,Any>()
+    
+
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //プッシュ通知利用リクエストの送信
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]){granted, error in
             if error != nil{
                 return
             }
+            
             if granted {
                 //フォアグラウンドで通知を受信した時
                 UNUserNotificationCenter.current().delegate = self
@@ -37,94 +40,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        //アプリ未起動時ペイロード取得
-        if let notificationOptions = launchOptions?[.remoteNotification] as? [String: AnyObject] {
-            //string:AnyObjectの形でペイロードを取得
-            guard let apsPart = notificationOptions["aps"] as? [String: AnyObject] else { return true }
-            //代入
-            jsonAps2 = apsPart
-            //guard let vc = window?.rootViewController as? ViewController else { return true }
-            //key,valueごとにテキストで取り出し
-            //let text = apsPart.map { (key, value) in "\(key): \(value)" }.joined(separator: "\n")
-
-//            vc.payloadText = text
-//            vc.backgroundColor = .yellow
-        }
-        
         return true
     }
     
-
-
-    
-//    func userNotificationCenter(_ center: UNUserNotificationCenter,
-//                                    //通知が押された際の処理
-//                                    didReceive response: UNNotificationResponse,
-//                                    withCompletionHandler completionHandler: @escaping() -> Void) {
-//
-//
-//
-//
-//        debugPrint("opened")
-//            //カスタム通知アクションのハンドリング
-//        switch response.actionIdentifier{
-//            //OKボタン
-//        case ActionIdentifier.ok.rawValue:
-//            //画面遷移
-//            self.window = UIWindow(frame: UIScreen.main.bounds)
-//            //Storyboardを指定
-//            let storyboard = UIStoryboard(name:"Main",bundle:nil)
-//            //ViewControllerを指定
-//            let initialViewContorller = storyboard.instantiateViewController(withIdentifier: "second")
-//            //rootViewControlerに代入
-//            self.window?.rootViewController = initialViewContorller
-//            //表示
-//            self.window?.makeKeyAndVisible()
-//            print("pushButton")
-//
-//            //NOボタン
-//        case ActionIdentifier.no.rawValue:
-//            break
-//        default:
-//            ()
-//
-//        }
-//        completionHandler()
-//    }
 }
 
 extension AppDelegate{
-    //プッシュ通知の利用登録が成功した場合
+    //デバイストークンの登録が成功した場合
     func application(_ application:UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data){
         let token = deviceToken.map{String(format:"%.2hhx",$0)}.joined()
         print("Device token:\(token)")
     }
     
-    //プッシュ通知の利用登録が失敗した場合
+    //デバイストークンの登録が失敗した場合
     func application(_ application:UIApplication,
                      didRegisterForRemoteNotificationsWithError error:Error){
         print("Failed to register to APNs: \(error)")
-    }
-    
-    //フォアグランド、バックグラウンド時ペイロード取得
-    func application(_ application: UIApplication,
-                     didReceiveRemoteNotification userInfo: [AnyHashable : Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        //string:AnyObjectの形でペイロードを取得
-        guard let apsPart = userInfo["aps"] as? [String: AnyObject] else {
-            completionHandler(.failed)
-            return
-        }
-        //代入
-        jsonAps = apsPart
-        
-        print("apsPart:",apsPart)
-        //guard let vc = self.window?.rootViewController as? ViewController else {return}
-        //guard let vc = window?.rootViewController as? ModalViewController else { return }
-        //key,valueごとにテキストで取り出し
-        //let text = apsPart.map { (key, value) in "\(key): \(value)" }.joined(separator: ": ")
-
     }
     
 
@@ -133,21 +65,88 @@ extension AppDelegate{
 
 extension AppDelegate:UNUserNotificationCenterDelegate{
     
-    //アプリが起動中それ以外でも通知が届く設定
+    
+    //フォアグランドでも通知が届く
     func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                //フォアグランドでも通知が届く
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler:@escaping(UNNotificationPresentationOptions)->Void) {
+        //push通知をトリガーにアラートとサウンドを出す
         if notification.request.trigger is UNPushNotificationTrigger{
                         debugPrint("プッシュ通知受信")
-                        completionHandler([.sound,.alert])
                     }else{
-                        debugPrint("受信できず")
+                        debugPrint("通知を受信できません")
                     }
+
         completionHandler([.alert,.sound])
     }
     
+    //通知が押された際の処理(通知に対する操作）
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                    didReceive response: UNNotificationResponse,
+                                    withCompletionHandler completionHandler: @escaping() -> Void) {
+        
+        //let userInfo = response.notification.request.content.userInfo
+        
+        //string:AnyObjectの形でペイロードを取得
+        guard let apsPart = response.notification.request.content.userInfo["aps"] as? [String: AnyObject] else {
+            print("error")
+            return
+        }
+        print(apsPart)
+        print("pushButton")
+        
+        //カスタム通知アクションのハンドリング
+        switch response.actionIdentifier{
+            
+            //利用者ダッシュボードボタン
+            case ActionIdentifier.dashboard.rawValue:
+                print("利用者ダッシュボードボタンが押されました")
+                break
+            //カメラボタン
+            case ActionIdentifier.camera.rawValue:
+                print("カメラボタンが押されました")
+                break
+            //対応ボタン
+            case ActionIdentifier.handle.rawValue:
+                print("対応ボタンが押されました")
+                break
+            //対応完了ボタン
+            case ActionIdentifier.handle_end.rawValue:
+                print("対応完了ボタンが押されました")
+            
+            //通知自体を押下した時の処理
+            default:
+            
+                //ペイロードを渡す
+                jsonAps = apsPart
+            
+                //通知押下時画面遷移
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                //Storyboardを指定
+                let storyboard = UIStoryboard(name:"Main",bundle:nil)
+                //ViewControllerを指定
+                let vc1 = storyboard.instantiateViewController(withIdentifier: "home")
+                let vc2 = storyboard.instantiateViewController(withIdentifier: "second")
+            
+                let nv = UINavigationController()
+                nv.viewControllers  = [vc1,vc2]
+                //rootViewControllerに代入
+                self.window?.rootViewController = nv
+                //表示
+                self.window?.makeKeyAndVisible()
+                
 
+        }
+        
+        completionHandler()
+        
+
+    }
+    
+
+    
 
 }
+
+
 

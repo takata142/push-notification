@@ -13,47 +13,15 @@ class PushViewController: UIViewController, WKNavigationDelegate, WKScriptMessag
     var webView: WKWebView!
     var window: UIWindow?
     var jsonAps = Dictionary<String,Any>()
-    var jsonAps2 = Dictionary<String,Any>()
-    var TC = UIApplication.shared.keyWindow?.rootViewController;
 
 
         override func viewDidLoad() {
         super.viewDidLoad()
             //appDelegateで定義した変数を使用できるようにする
             let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            //jsonAps2 = appDelegate.jsonAps2
             jsonAps = appDelegate.jsonAps
 
-            
-            //--------------------------------------------------
-            //nativeView
-            //--------------------------------------------------
-//            let nativeView = UIView()
-//            nativeView.backgroundColor = UIColor.white
-//            nativeView.frame = CGRect(x:0,
-//                                      y:0,
-//                                      width: self.view.frame.size.width,
-//                                      height: (self.view.frame.size.height)/4)
-//
-//            //nativeView表示
-//            self.view.addSubview(nativeView)
-//
-//            //ボタン作成
-//            let btn:UIButton = UIButton()
-//            btn.frame = CGRect(x: self.view.frame.width/2,
-//                                  y:(self.view.frame.size.height)/4,
-//                                  width: 80,
-//                                  height: 50)
-//            btn.layer.position = CGPoint(x: self.view.frame.width/2, y:100)
-//            btn.setTitle("< Back", for: UIControl.State.normal)
-//            btn.sizeToFit()
-//            btn.setTitleColor(.blue, for: .normal)
-//            //btn.backgroundColor = UIColor(red: 0.3, green: 0.7, blue: 0.6, alpha: 1)
-//
-//            self.view.addSubview(btn)
-//
-//            //ボタンクリック時アクション指定
-//            btn.addTarget(self, action: #selector(self.btn_tapped(_:)), for: UIControl.Event.touchUpInside)
+
             
             //--------------------------------------------------
             //webView
@@ -69,7 +37,7 @@ class PushViewController: UIViewController, WKNavigationDelegate, WKScriptMessag
             webConfigration.userContentController = userController
 
             webView = WKWebView(frame: CGRect(x:0,
-                                              y:self.view.frame.midY,
+                                              y:self.view.frame.midY/2,
                                               width: self.view.frame.size.width,
                                               height: self.view.frame.size.height),
                                               configuration: webConfigration)
@@ -122,37 +90,7 @@ class PushViewController: UIViewController, WKNavigationDelegate, WKScriptMessag
         super.didReceiveMemoryWarning()
     }
     
-    
-    
-    //ボタンアクション
-    @IBAction func btn_tapped(_ sender:Any){
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-//        let storyboard = UIStoryboard(name:"Main",bundle:nil)
-//        let initialViewContorller = storyboard.instantiateViewController(withIdentifier: "home")
-//        self.window?.rootViewController = initialViewContorller
-//        self.window?.makeKeyAndVisible()
-        //self.dismiss(animated: true, completion: nil)
-        self.navigationController?.popToRootViewController(animated: true)
-        
 
-    }
-
-    // 現在表示されている最前面の画面を取得するメソッド
-        func getTopMostViewController()->UIViewController{
-            TC = UIApplication.shared.keyWindow?.rootViewController;
-            while ((TC!.presentedViewController) != nil) {
-                TC = TC!.presentedViewController;
-            }
-            return TC!;
-        }
-
-        // 画面遷移させるメソッド
-        func ChangeVC() {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let AfterVC = storyboard.instantiateViewController(withIdentifier: "second")
-
-            TC?.present(AfterVC, animated: true, completion: nil)
-        }
 
 
 

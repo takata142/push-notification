@@ -15,7 +15,8 @@
 		846FA79F2758452B0011C1AE /* pushNotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA79E2758452B0011C1AE /* pushNotificationTests.swift */; };
 		846FA7A92758452B0011C1AE /* pushNotificationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA7A82758452B0011C1AE /* pushNotificationUITests.swift */; };
 		846FA7AB2758452B0011C1AE /* pushNotificationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA7AA2758452B0011C1AE /* pushNotificationUITestsLaunchTests.swift */; };
-		846FA7BB275994D10011C1AE /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA7BA275994D10011C1AE /* ModalViewController.swift */; };
+		846FA7BB275994D10011C1AE /* PushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846FA7BA275994D10011C1AE /* PushViewController.swift */; };
+		84F0EC6027914FE400AAC036 /* notification.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 84F0EC5F27914FE400AAC036 /* notification.m4r */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +50,8 @@
 		846FA7A82758452B0011C1AE /* pushNotificationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pushNotificationUITests.swift; sourceTree = "<group>"; };
 		846FA7AA2758452B0011C1AE /* pushNotificationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pushNotificationUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		846FA7B7275846AE0011C1AE /* pushNotification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pushNotification.entitlements; sourceTree = "<group>"; };
-		846FA7BA275994D10011C1AE /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		846FA7BA275994D10011C1AE /* PushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushViewController.swift; sourceTree = "<group>"; };
+		84F0EC5F27914FE400AAC036 /* notification.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; name = notification.m4r; path = ../../../../Downloads/notification.m4r; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +103,10 @@
 			isa = PBXGroup;
 			children = (
 				846FA7B7275846AE0011C1AE /* pushNotification.entitlements */,
+				84F0EC5F27914FE400AAC036 /* notification.m4r */,
 				846FA7872758452A0011C1AE /* AppDelegate.swift */,
 				846FA78B2758452A0011C1AE /* ViewController.swift */,
-				846FA7BA275994D10011C1AE /* ModalViewController.swift */,
+				846FA7BA275994D10011C1AE /* PushViewController.swift */,
 				846FA78D2758452A0011C1AE /* Main.storyboard */,
 				846FA7902758452B0011C1AE /* Assets.xcassets */,
 				846FA7922758452B0011C1AE /* LaunchScreen.storyboard */,
@@ -233,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F0EC6027914FE400AAC036 /* notification.m4r in Resources */,
 				846FA7942758452B0011C1AE /* LaunchScreen.storyboard in Resources */,
 				846FA7912758452B0011C1AE /* Assets.xcassets in Resources */,
 				846FA78F2758452A0011C1AE /* Main.storyboard in Resources */,
@@ -260,7 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				846FA7BB275994D10011C1AE /* ModalViewController.swift in Sources */,
+				846FA7BB275994D10011C1AE /* PushViewController.swift in Sources */,
 				846FA78C2758452A0011C1AE /* ViewController.swift in Sources */,
 				846FA7882758452A0011C1AE /* AppDelegate.swift in Sources */,
 			);
